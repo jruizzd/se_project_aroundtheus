@@ -57,10 +57,15 @@
   margin-right: 24px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 580px) {
   .profile {
     /*background-color: pink;*/
     flex-direction: column;
+  }
+
+  .profile__add-button {
+    margin: 0;
+    width: 100%;
   }
 }
 
@@ -74,11 +79,4 @@
 .profile__description {
   width: 100%;
   text-align: center;
-}
-
-@media screen and (max-width: 480px) {
-  .profile__add-button {
-    margin: 0;
-    width: 100%;
-  }
 }

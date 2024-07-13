@@ -19,6 +19,17 @@
   border-radius: 10px;
 }
 
+.card__title {
+  max-width: 220px;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0;
+}
+
 .card__image {
   width: 282px;
   height: 282px;

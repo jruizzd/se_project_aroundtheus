@@ -43,6 +43,9 @@
   font-weight: 400;
   grid-area: description;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__image {
@@ -73,7 +76,9 @@
   text-align: center;
 }
 
-@media screen and (max-width: ) .profile__add-button {
-  margin: 0;
-  width: 100%;
+@media screen and (max-width: 480px) {
+  .profile__add-button {
+    margin: 0;
+    width: 100%;
+  }
 }

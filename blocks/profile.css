@@ -10,7 +10,9 @@
   grid-template-areas:
     "title button"
     "description description";
-  grid-template-columns: minmax(auto, 373px) auto;
+  grid-template-columns: minmax(auto, 375px) auto;
+  align-items: center;
+  gap: 18px;
 }
 
 .profile__edit-button {
@@ -19,7 +21,6 @@
   width: 24px;
   grid-area: button;
   display: flex;
-  border: 1px;
   border-color: white;
 }
 
@@ -38,6 +39,9 @@
   font-weight: 500;
   grid-area: title;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__description {
@@ -69,6 +73,7 @@
   .profile__add-button {
     margin: 0;
     width: 100%;
+    margin-top: 36px;
   }
 
   .profile__info {

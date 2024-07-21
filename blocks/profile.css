@@ -19,6 +19,7 @@
   background: transparent url(../images/edit-icon.svg) center no-repeat;
   height: 24px;
   width: 24px;
+  margin-right: 10px;
   grid-area: button;
   display: flex;
   border-color: white;
@@ -86,5 +87,9 @@
   .profile__description {
     width: 100%;
     text-align: center;
+  }
+
+  .profile__edit-button {
+    margin: 0;
   }
 }

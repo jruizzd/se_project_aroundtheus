@@ -7,3 +7,17 @@
 .footer__copyright {
   color: #545454;
 }
+
+@media screen and (max-width: 959px) {
+  .footer__copyright {
+    width: 581px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .footer__copyright {
+    width: 282px;
+  }
+}

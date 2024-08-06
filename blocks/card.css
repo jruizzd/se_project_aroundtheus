@@ -1,6 +1,6 @@
 .cards {
   /* fonts;*/
-  margin-top: 30px;
+  margin-top: 36px;
 }
 
 .card__list {
@@ -53,4 +53,8 @@
   width: 21px;
   height: 18px;
   border-style: none;
+}
+
+.card__like-button:hover {
+  opacity: 50%;
 }

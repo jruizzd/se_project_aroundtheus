@@ -22,8 +22,8 @@
   margin-right: 10px;
   grid-area: button;
   display: flex;
-  border-color: white;
   cursor: pointer;
+  border: solid white 1px;
 }
 
 .profile__edit-button:hover {
@@ -36,14 +36,13 @@
   height: 50px;
   margin-left: auto;
   border-radius: 2px;
-  border-color: white;
   cursor: pointer;
   transition: opacity 0.5s;
+  border: solid white 2px;
 }
 
 .profile__add-button:hover {
   opacity: 60%;
-  border-color: rgba(255, 255, 255, 0.6);
 }
 
 .profile__title {

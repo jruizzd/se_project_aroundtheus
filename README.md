@@ -2,12 +2,12 @@
 
 ## Description
 
-TODO - Describe project
+I created this project with html and css. A responsive design project includes cards with images and a footer. Screen-width adjustments from desktop to mobile.
 
 ## Technologies Used
 
-- first
-- second
+- Technologies I used github ,css and html to create this webpage.
+- Techniques used display flex and grid. Media queries to judge screen width. Text overflow to have round instead of sharp edges.
 
 ## Deployment
 

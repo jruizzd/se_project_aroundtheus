@@ -11,7 +11,7 @@ I created this project with html and css. A responsive design project includes c
 
 ## Deployment
 
-The project is deployed at \_\_\_
+The project is deployed at https://jruizzd.github.io/se_project_aroundtheus/
 
 ## Video
 

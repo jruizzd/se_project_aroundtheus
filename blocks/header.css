@@ -20,7 +20,8 @@
     margin: 28px 157px 32px 27px;
     /* margin: 0 auto 0 0; */
   }
-  .header__logo {
+
+  .header {
     margin: 0;
     padding: 0;
     max-width: 100%;

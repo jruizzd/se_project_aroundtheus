@@ -81,7 +81,6 @@
   .profile {
     /*background-color: pink;*/
     flex-direction: column;
-    align-items: center;
   }
 
   .profile__add-button {
@@ -98,6 +97,7 @@
     justify-content: center;
     gap: 10px;
     align-items: first baseline;
+    max-width: 282px;
   }
 
   .profile__description {

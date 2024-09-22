@@ -10,7 +10,7 @@
   padding: 0 19px;
 }
 
-.modal__opened {
+.modal_opened {
   display: flex;
 }
 
@@ -75,6 +75,8 @@
   background-color: #000000;
   color: #ffffff;
   margin-top: 48px;
+  font-size: 18px;
+  line-height: 21.78px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 620px) {
@@ -95,6 +97,8 @@
     max-width: 238px;
     height: 27px;
     padding-bottom: 13px;
+    font-size: 14px;
+    line-height: 16.94px;
   }
 
   .modal__close {
@@ -106,5 +110,11 @@
     max-width: 238px;
     height: 46px;
     margin-top: 45px;
+    font-size: 14px;
+    line-height: 16.94px;
+  }
+
+  .modal__form {
+    gap: 30px;
   }
 }

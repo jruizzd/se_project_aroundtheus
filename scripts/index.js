@@ -50,13 +50,13 @@ profileEditButton.addEventListener("click", () => {
   profileEditModal.classList.add("modal__opened");
 });
 
-profileEditCloseButton.addEventListener("click", () => {
-  closePopop();
-});
-
-profileEditForm.addEventListener("submit", (e) => {
+function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   closePopop();
-});
+}
+
+profileEditCloseButton.addEventListener("click", closePopop);
+
+profileEditForm.addEventListener("submit", handleProfileEditSubmit);

@@ -41,26 +41,49 @@
       <footer class="footer page__section">
         <p class="footer__copyright">&copy; 2022 Around the U.S.</p>
       </footer>
-    </div>
 
-    <div class="modal" id="profile-edit-modal">
+      <!-- Edit Modal -->
+      <div class="modal" id="edit-modal">
+        <div class="modal__container">
+          <button class="modal__close"></button>
+          <p class="modal__heading">Edit Profile</p>
+          <form class="modal__form" id="edit-profile-form">
+            <input
+              type="text"
+              class="modal__input"
+              id="profile-title-input"
+              name="name"
+              placeholder="Jacques Cousteau"
+            />
+            <input
+              type="text"
+              class="modal__input"
+              id="profile-description-input"
+              name="description"
+              placeholder="Explorer"
+            />
+            <button class="modal__button" type="submit">Save</button>
+          </form>
+        </div>
+      </div>
+      <!-- Add card modal -->
       <div class="modal__container">
         <button class="modal__close"></button>
-        <p class="modal__heading">Edit Profile</p>
-        <form class="modal__form">
+        <p class="modal__heading">New Place</p>
+        <form class="modal__form" id="add-card-form">
           <input
             type="text"
-            class="modal__input"
+            class="modal__input_type_title"
             id="profile-title-input"
             name="title"
-            placeholder="Jacques Cousteau"
+            placeholder="Title"
           />
           <input
             type="text"
-            class="modal__input"
+            class="modal__input_type_url"
             id="profile-description-input"
-            name="description"
-            placeholder="Explorer"
+            name="url"
+            placeholder="Image URL"
           />
           <button class="modal__button" type="submit">Save</button>
         </form>

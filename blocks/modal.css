@@ -14,6 +14,10 @@
   display: flex;
 }
 
+.modal_is-opened {
+  display: flex;
+}
+
 .modal__container {
   background-color: #fff;
   margin: auto;

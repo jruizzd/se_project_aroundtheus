@@ -49,3 +49,7 @@
 .card__like-button:hover {
   opacity: 50%;
 }
+
+.card__delete-button {
+  background-image: url(../images/trash.svg);
+}

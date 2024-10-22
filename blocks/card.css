@@ -4,6 +4,7 @@
   list-style: none;
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
 }
 
 .card__title {
@@ -55,12 +56,12 @@
 .card__delete-button {
   background: transparent url(../images/trash.svg);
   background-size: contain;
-  position: relative;
+  position: absolute;
   width: 18px;
   height: 19.3px;
   z-index: 1;
-  top: 20px;
-  left: 250px;
+  top: 18px;
+  right: 15px;
   border-style: none;
   cursor: pointer;
 }

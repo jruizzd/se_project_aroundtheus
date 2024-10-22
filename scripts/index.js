@@ -88,11 +88,16 @@ function getCardElement(cardData) {
   const deleteButton = cardElement.querySelector(".card__delete-button");
   // find the delete button
 
-  //add the event listner to the delete button
+  //add the event listener to the delete button
   // cardElement.remove();
+
+  deleteButton.addEventListener("click", (e) => {
+    cardElement.remove();
+  });
 
   // add click listener to the cardImage element
   // openModal with previewImageModal
+  cardImage.addEventListener("click", (e) => openModal(previewImageModal));
 
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");

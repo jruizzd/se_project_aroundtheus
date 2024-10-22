@@ -86,6 +86,7 @@ function getCardElement(cardData) {
   const cardTitle = cardElement.querySelector(".card__title");
   const likeButton = cardElement.querySelector(".card__like-button");
   const deleteButton = cardElement.querySelector(".card__delete-button");
+  const previewImageModal = document.querySelector(".preview__Image-Modal");
   // find the delete button
 
   //add the event listener to the delete button
@@ -97,7 +98,9 @@ function getCardElement(cardData) {
 
   // add click listener to the cardImage element
   // openModal with previewImageModal
-  cardImage.addEventListener("click", (e) => openModal(previewImageModal));
+  cardImage.addEventListener("click", (e) => {
+    previewImageModal.classList.add("modal_opened");
+  });
 
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");

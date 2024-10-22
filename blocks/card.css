@@ -20,6 +20,8 @@
 .card__image {
   width: 282px;
   height: 282px;
+  object-fit: cover;
+  position: relative;
 }
 
 .card__description {
@@ -51,5 +53,17 @@
 }
 
 .card__delete-button {
-  background-image: url(../images/trash.svg);
+  background: transparent url(../images/trash.svg);
+  background-size: contain;
+  position: relative;
+  width: 18px;
+  height: 19.3px;
+  z-index: 1;
+  top: 20px;
+  left: 250px;
+  border-style: none;
+  cursor: pointer;
+}
+
+.card__delete-button:hover {
 }

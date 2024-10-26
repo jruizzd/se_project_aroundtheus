@@ -61,7 +61,7 @@ function openModal(modal) {
 }
 
 function renderCard(cardData, wrapper) {
-  cardElement = getCardElement(cardData);
+  let cardElement = getCardElement(cardData);
   wrapper.prepend(cardElement);
 }
 
@@ -86,7 +86,8 @@ function getCardElement(cardData) {
   const cardTitle = cardElement.querySelector(".card__title");
   const likeButton = cardElement.querySelector(".card__like-button");
   const deleteButton = cardElement.querySelector(".card__delete-button");
-  const previewImageModal = document.querySelector(".preview__Image-Modal");
+  const previewImageModal = document.querySelector("#preview__Image-Modal");
+  const previewImage = previewImageModal.querySelector(".preview__image");
   // find the delete button
 
   //add the event listener to the delete button
@@ -99,6 +100,8 @@ function getCardElement(cardData) {
   // add click listener to the cardImage element
   // openModal with previewImageModal
   cardImage.addEventListener("click", (e) => {
+    previewImage.src = cardData.link;
+    previewImage.alt = cardData.name;
     previewImageModal.classList.add("modal_opened");
   });
 

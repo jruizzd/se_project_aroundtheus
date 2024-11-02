@@ -28,6 +28,11 @@
   box-sizing: border-box;
 }
 
+.modal__preview-container {
+  margin: auto;
+  position: relative;
+}
+
 .modal__close {
   background-image: url(../images/close.svg);
   border: none;
@@ -73,6 +78,11 @@
   line-height: 16.94px;
   text-align: left;
   padding-left: 0;
+}
+
+.modal__preview-img {
+  max-width: 75vw;
+  max-height: 75vh;
 }
 
 .modal__button {

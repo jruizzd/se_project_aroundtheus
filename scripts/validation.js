@@ -4,7 +4,13 @@
 function setEventListeners(formEl, options) {
   const { inputSelector } = options;
   const inputEls = [...formEl.querySelectorAll(inputSelector)];
-  console.log(inputEls);
+  inputEls.forEach((inputEL) => {
+    inputEL.addEventListener("input", (e) => {
+      if (inputEL.value.length < 2) {
+        // dod
+      }
+    });
+  });
 }
 
 function enableValidation(options) {
@@ -29,12 +35,12 @@ function enableValidation(options) {
 }
 
 const config = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
 };
 
 enableValidation(config);

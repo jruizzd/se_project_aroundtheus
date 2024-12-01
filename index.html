@@ -54,15 +54,25 @@
               id="profile-title-input"
               name="name"
               placeholder="Jacques Cousteau"
+              minlength="2"
+              maxlength="40"
               required
             />
+            <span class="modal__error" id="profile-title-input-error"></span>
             <input
               type="text"
               class="modal__input modal__input_type_description"
               id="profile-description-input"
               name="description"
               placeholder="Explorer"
+              minlength="2"
+              maxlength="200"
+              required
             />
+            <span
+              class="modal__error"
+              id="profile-description-input-error"
+            ></span>
             <button class="modal__button" type="submit">Save</button>
           </form>
         </div>
@@ -85,7 +95,13 @@
               name="url"
               placeholder="Image URL"
             />
-            <button class="modal__button" type="submit">Save</button>
+            <button
+              class="modal__button modal__button_disabled"
+              type="submit"
+              disabled
+            >
+              Save
+            </button>
           </form>
         </div>
       </div>

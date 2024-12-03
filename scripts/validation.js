@@ -48,6 +48,15 @@ function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
   }
   enableButton(inputEls, submitButton, inactiveButtonClass);
 }
+const form = document.querySelector("form");
+const saveButton = document.querySelector(".modal__button");
+form.addEventListener("input", () => {
+  if (!form.checkValidity()) {
+    saveButton.classList.add("invalid");
+  } else {
+    saveButton.classList.remove("invalid");
+  }
+});
 
 function setEventListeners(formEl, options) {
   const { inputSelector, submitButtonSelector } = options;

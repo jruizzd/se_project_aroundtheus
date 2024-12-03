@@ -59,14 +59,6 @@ const modalPreviewTitle = previewImageModal.querySelector(
 const previewImageModalCloseButton =
   previewImageModal.querySelector(".modal__close");
 
-function closeModal(modal) {
-  modal.classList.remove("modal_is-opened");
-}
-
-function openModal(modal) {
-  modal.classList.add("modal_is-opened");
-}
-
 function renderCard(cardData, wrapper) {
   const cardElement = getCardElement(cardData);
   wrapper.prepend(cardElement);
@@ -123,6 +115,31 @@ function getCardElement(cardData) {
 
   return cardElement;
 }
+
+// Escape and Overlay
+function openModal(modal) {
+  modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closeModalEsc);
+  modal.addEventListener("mousedown", closeModalOverlay);
+}
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeModalEsc);
+  modal.removeEventListener("mousedown", closeModalOverlay);
+}
+
+function closeModalEsc(evt) {
+  if (evt.key === "Escape") {
+    const modalOpened = document.querySelector(".modal_opened");
+    closeModal(modalOpened);
+  }
+}
+function closeModalOverlay(evt) {
+  if (evt.target === evt.currentTarget) {
+    closeModal(evt.currentTarget);
+  }
+}
+
 // Form Listeners
 previewImageModalCloseButton.addEventListener("click", () =>
   closeModal(previewImageModal)

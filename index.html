@@ -48,31 +48,33 @@
           <button class="modal__close"></button>
           <p class="modal__heading">Edit Profile</p>
           <form class="modal__form" id="edit-profile-form">
-            <input
-              type="text"
-              class="modal__input modal__input_type_name"
-              id="profile-title-input"
-              name="name"
-              placeholder="Jacques Cousteau"
-              minlength="2"
-              maxlength="40"
-              required
-            />
-            <span class="modal__error" id="profile-title-input-error"></span>
-            <input
-              type="text"
-              class="modal__input modal__input_type_description"
-              id="profile-description-input"
-              name="description"
-              placeholder="Explorer"
-              minlength="2"
-              maxlength="200"
-              required
-            />
-            <span
-              class="modal__error"
-              id="profile-description-input-error"
-            ></span>
+            <label class="modal__label">
+              <input
+                type="text"
+                class="modal__input modal__input_type_name"
+                id="profile-title-input"
+                name="name"
+                placeholder="Jacques Cousteau"
+                minlength="2"
+                maxlength="40"
+                required />
+              <span class="modal__error" id="profile-title-input-error"></span
+            ></label>
+            <label class="modal__label">
+              <input
+                type="text"
+                class="modal__input modal__input_type_description"
+                id="profile-description-input"
+                name="description"
+                placeholder="Explorer"
+                minlength="2"
+                maxlength="200"
+                required />
+              <span
+                class="modal__error"
+                id="profile-description-input-error"
+              ></span
+            ></label>
             <button class="modal__button" type="submit">Save</button>
           </form>
         </div>
@@ -83,18 +85,34 @@
           <button class="modal__close"></button>
           <p class="modal__heading">New Place</p>
           <form class="modal__form" id="add-card-form">
-            <input
-              type="text"
-              class="modal__input modal__input_type_title"
-              name="title"
-              placeholder="Title"
-            />
-            <input
-              type="text"
-              class="modal__input modal__input_type_url"
-              name="url"
-              placeholder="Image URL"
-            />
+            <label class="modal__label">
+              <input
+                type="text"
+                class="modal__input modal__input_type_title"
+                id="place-title-input"
+                name="title"
+                placeholder="Title"
+                minlength="1"
+                maxlength="30"
+                required
+              />
+              <span class="modal__error" id="place-title-input-error"
+                >Please fill out this field.</span
+              ></label
+            >
+            <label class="modal__label">
+              <input
+                type="text"
+                class="modal__input modal__input_type_url"
+                id="place-type-url"
+                name="url"
+                placeholder="Image URL"
+                required
+              />
+              <span class="modal__error" id="place-type-url-error"
+                >Please enter a web address.</span
+              ></label
+            >
             <button
               class="modal__button modal__button_disabled"
               type="submit"

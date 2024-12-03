@@ -98,6 +98,10 @@
   padding-left: 0;
 }
 
+.modal__input:invalid {
+  border-bottom: 1px solid #ff0000;
+}
+
 /* .modal__input_type_title {
   border: none;
   outline: none;
@@ -135,6 +139,11 @@
   margin-top: 18.26px;
   font-size: 18px;
   line-height: 21.78px;
+}
+
+.modal__button.invalid {
+  background-color: #ffffff;
+  color: black;
 }
 
 @media screen and (min-width: 320px) and (max-width: 620px) {

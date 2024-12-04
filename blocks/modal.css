@@ -141,7 +141,7 @@
   line-height: 21.78px;
 }
 
-.modal__button.invalid {
+.modal__button_disabled {
   background-color: #ffffff;
   color: black;
 }

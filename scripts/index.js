@@ -103,9 +103,8 @@ function getCardElement(cardData) {
   //add the event listener to the delete button
   // cardElement.remove();
 
-  deleteButton.addEventListener("click", (e) => {
-    cardElement.remove();
-  });
+  // deleteButton.addEventListener("click", handleDeleteCard);
+  // cardElement.remove();
 
   // add click listener to the cardImage element
   // openModal with previewImageModal
@@ -116,9 +115,8 @@ function getCardElement(cardData) {
     openModal(previewImageModal);
   });
 
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
+  likeButton.addEventListener("click", handleLikeIcon);
+  likeButton.classList.toggle("card__like-button_active");
 
   cardImage.src = cardData.link;
   cardImage.alt = cardData.name;

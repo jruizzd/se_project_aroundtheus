@@ -1,4 +1,5 @@
 import Card from "./Card.js";
+import FormValidator from "./formValidator.js";
 
 const initialCards = [
   {
@@ -26,7 +27,7 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
-// Card.js
+// Card.js and Validator.js
 const cardData = {
   name: "Yosemite Valley",
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -35,6 +36,35 @@ const cardData = {
 const card = new Card(cardData, "#card-template");
 card.getView();
 
+const formSettings = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  errorClass: "modal__error",
+  validClass: "valid",
+  invalidClass: "invalid",
+};
+// Select the form elements
+const cardFormElement = document.querySelector("#add-card-form");
+const profileFormElement = document.querySelector("#edit-profile-form");
+// Create instances of FormValidator for both forms
+const cardFormValidator = new FormValidator(formSettings, cardFormElement);
+const profileFormValidator = new FormValidator(
+  formSettings,
+  profileFormElement
+);
+// enable form validation for both forms
+cardFormValidator.enableValidation();
+profileFormValidator.enableValidation();
+// Initialize the Card logic for handling form submission
+const cardInstance = new Card(cardData, "#card-template");
+cardInstance.init();
+// Handle profile modal opening and form resetting
+const editProfileButton = document.querySelector(".profile__edit-button");
+editProfileButton.addEventListener("click", () => {
+  const data = { value: "Profile info" };
+  card.openForm(data);
+  profileFormValidator.resetValidation();
+});
 // Template
 const cardTemplate = document
   .querySelector("#card-template")
@@ -44,7 +74,7 @@ const cardTemplate = document
 const cardsWrap = document.querySelector(".cards__list");
 const editProfileModal = document.querySelector("#edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
-const profileFormElement = editProfileModal.querySelector(".modal__form");
+const editprofileFormElement = editProfileModal.querySelector(".modal__form");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
 //Buttons and other DOM nodes
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -115,8 +145,11 @@ function getCardElement(cardData) {
     openModal(previewImageModal);
   });
 
+  function handleLikeIcon() {
+    likeButton.classList.toggle("card__like-button_active");
+  }
+
   likeButton.addEventListener("click", handleLikeIcon);
-  likeButton.classList.toggle("card__like-button_active");
 
   cardImage.src = cardData.link;
   cardImage.alt = cardData.name;

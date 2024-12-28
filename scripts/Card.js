@@ -37,22 +37,12 @@ export default class Card {
       .querySelector(this._cardSelector)
       .content.querySelector(".card")
       .cloneNode(true);
-    // get the card view
-    // set event listeners
+    this._imageElement = this._cardElement.querySelector(".card__image");
+    this._textElement = this._cardElement.querySelector(".card__title");
+    this._imageElement.src = this._link;
+    this._imageElement.alt = this._name;
+    this._textElement.textContent = this._name;
     this._setEventListeners();
-    // return the card
-  }
-
-  init() {
-    // Create the card's HTML using template
-    const cardTemplate = document.querySelector("#card-template");
-    const cardElement = cardTemplate.content.cloneNode(true);
-
-    // Set the card's title and image
-    cardElement.querySelector(".card__title").textContent = this.title;
-    cardElement.querySelector(".card__image").src = this.imageUrl;
-
-    // Append the new card to the list of cards in the DOM
-    document.querySelector(".cards__list").appendChild(cardElement);
+    return this._cardElement;
   }
 }

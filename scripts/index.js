@@ -33,16 +33,19 @@ const cardData = {
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
 
-const card = new Card(cardData, "#card-template");
-card.getView();
+function createCard(cardData) {
+  const card = new Card(cardData, "#card-template");
+  return card.getView();
+}
 
 const formSettings = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
   errorClass: "modal__error",
-  validClass: "valid",
-  invalidClass: "invalid",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
 };
+
 // Select the form elements
 const cardFormElement = document.querySelector("#add-card-form");
 const profileFormElement = document.querySelector("#edit-profile-form");
@@ -55,16 +58,9 @@ const profileFormValidator = new FormValidator(
 // enable form validation for both forms
 cardFormValidator.enableValidation();
 profileFormValidator.enableValidation();
-// Initialize the Card logic for handling form submission
-const cardInstance = new Card(cardData, "#card-template");
-cardInstance.init();
+// cardInstance.init();
 // Handle profile modal opening and form resetting
-const editProfileButton = document.querySelector(".profile__edit-button");
-editProfileButton.addEventListener("click", () => {
-  const data = { value: "Profile info" };
-  card.openForm(data);
-  profileFormValidator.resetValidation();
-});
+
 // Template
 const cardTemplate = document
   .querySelector("#card-template")
@@ -101,7 +97,7 @@ const previewImageModalCloseButton =
   previewImageModal.querySelector(".modal__close");
 
 function renderCard(cardData, wrapper) {
-  const cardElement = getCardElement(cardData);
+  const cardElement = createCard(cardData);
   wrapper.prepend(cardElement);
 }
 

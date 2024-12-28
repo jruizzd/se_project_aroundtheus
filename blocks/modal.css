@@ -18,7 +18,7 @@
   pointer-events: all;
 }
 
-.modal__error {
+.modal__span {
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;
@@ -28,6 +28,11 @@
   top: calc(100% + 5px);
   left: 0;
   transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.modal__error {
+  opacity: 1;
 }
 
 .modal__label {
@@ -98,7 +103,10 @@
   padding-left: 0;
 }
 
-.modal__input:invalid {
+/* .modal__input:invalid {
+} */
+
+.modal__input_type_error {
   border-bottom: 1px solid #ff0000;
 }
 

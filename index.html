@@ -58,7 +58,7 @@
                 minlength="2"
                 maxlength="40"
                 required />
-              <span class="modal__error" id="profile-title-input-error"></span
+              <span class="modal__span" id="profile-title-input-error"></span
             ></label>
             <label class="modal__label">
               <input
@@ -71,7 +71,7 @@
                 maxlength="200"
                 required />
               <span
-                class="modal__error"
+                class="modal__span"
                 id="profile-description-input-error"
               ></span
             ></label>
@@ -95,21 +95,18 @@
                 minlength="1"
                 maxlength="30"
                 required />
-              <span class="modal__error" id="place-title-input-error"></span
+              <span class="modal__span" id="place-title-input-error"></span
             ></label>
             <label class="modal__label">
               <input
-                type="text"
+                type="url"
                 class="modal__input modal__input_type_url"
                 id="place-type-url"
                 name="url"
                 placeholder="Image URL"
-                required
-              />
-              <span class="modal__error" id="place-type-url-error"
-                >Please enter web address.</span
-              ></label
-            >
+                required />
+              <span class="modal__span" id="place-type-url-error"></span
+            ></label>
             <button
               class="modal__button modal__button_disabled"
               type="submit"

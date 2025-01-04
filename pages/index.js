@@ -1,5 +1,5 @@
-import Card from "../scripts/Card.js";
-import FormValidator from "../scripts/formValidator.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/formValidator.js";
 
 const initialCards = [
   {
@@ -28,13 +28,9 @@ const initialCards = [
   },
 ];
 // Card.js and Validator.js
-const cardData = {
-  name: "Yosemite Valley",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-};
 
 function createCard(cardData) {
-  const card = new Card(cardData, "#card-template");
+  const card = new Card(cardData, "#card-template", handleCardImageClick);
   return card.getView();
 }
 
@@ -70,8 +66,8 @@ const cardTemplate = document
 const cardsWrap = document.querySelector(".cards__list");
 const editProfileModal = document.querySelector("#edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
-const editprofileFormElement = editProfileModal.querySelector(".modal__form");
-const addCardFormElement = addCardModal.querySelector(".modal__form");
+const profileFormElement = editProfileModal.querySelector(".modal__form");
+const cardFormElement = addCardModal.querySelector(".modal__form");
 //Buttons and other DOM nodes
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileModalCloseButton = editProfileModal.querySelector(".modal__close");
@@ -152,6 +148,13 @@ function getCardElement(cardData) {
   cardTitle.textContent = cardData.name;
 
   return cardElement;
+}
+
+function handleCardImageClick(name, link) {
+  modalPreviewImg.src = link;
+  modalPreviewImg.alt = name;
+  modalPreviewTitle.textContent = name;
+  openModal(previewImageModal);
 }
 
 // Escape and Overlay

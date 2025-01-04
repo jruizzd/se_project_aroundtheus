@@ -29,6 +29,11 @@ const initialCards = [
 ];
 // Card.js and Validator.js
 
+const cardData = {
+  name: "Yoesmite Valley",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+};
+
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template", handleCardImageClick);
   return card.getView();
@@ -66,8 +71,7 @@ const cardTemplate = document
 const cardsWrap = document.querySelector(".cards__list");
 const editProfileModal = document.querySelector("#edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
-const profileFormElement = editProfileModal.querySelector(".modal__form");
-const cardFormElement = addCardModal.querySelector(".modal__form");
+
 //Buttons and other DOM nodes
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileModalCloseButton = editProfileModal.querySelector(".modal__close");
@@ -80,10 +84,10 @@ const nameInput = profileFormElement.querySelector(".modal__input_type_name");
 const jobInput = profileFormElement.querySelector(
   ".modal__input_type_description"
 );
-const cardTitleInput = addCardFormElement.querySelector(
+const cardTitleInput = cardFormElement.querySelector(
   ".modal__input_type_title"
 );
-const cardUrlInput = addCardFormElement.querySelector(".modal__input_type_url");
+const cardUrlInput = cardFormElement.querySelector(".modal__input_type_url");
 const previewImageModal = document.querySelector("#preview-image-modal");
 const modalPreviewImg = previewImageModal.querySelector(".modal__preview-img");
 const modalPreviewTitle = previewImageModal.querySelector(
@@ -110,45 +114,41 @@ function handleAddCardFormSubmit(evt) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardsWrap);
   closeModal(addCardModal);
-  addCardFormElement.reset();
+  cardFormElement.reset();
 }
 
-function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImage = cardElement.querySelector(".card__image");
-  const cardTitle = cardElement.querySelector(".card__title");
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const deleteButton = cardElement.querySelector(".card__delete-button");
+const cardElement = cardTemplate.cloneNode(true);
+const cardImage = cardElement.querySelector(".card__image");
+const cardTitle = cardElement.querySelector(".card__title");
+const likeButton = cardElement.querySelector(".card__like-button");
+const deleteButton = cardElement.querySelector(".card__delete-button");
 
-  // find the delete button
+// find the delete button
 
-  //add the event listener to the delete button
-  // cardElement.remove();
+//add the event listener to the delete button
+// cardElement.remove();
 
-  // deleteButton.addEventListener("click", handleDeleteCard);
-  // cardElement.remove();
+// deleteButton.addEventListener("click", handleDeleteCard);
+// cardElement.remove();
 
-  // add click listener to the cardImage element
-  // openModal with previewImageModal
-  cardImage.addEventListener("click", (e) => {
-    modalPreviewImg.src = cardData.link;
-    modalPreviewImg.alt = cardData.name;
-    modalPreviewTitle.textContent = cardData.name;
-    openModal(previewImageModal);
-  });
+// add click listener to the cardImage element
+// openModal with previewImageModal
+cardImage.addEventListener("click", (e) => {
+  modalPreviewImg.src = cardData.link;
+  modalPreviewImg.alt = cardData.name;
+  modalPreviewTitle.textContent = cardData.name;
+  openModal(previewImageModal);
+});
 
-  function handleLikeIcon() {
-    likeButton.classList.toggle("card__like-button_active");
-  }
-
-  likeButton.addEventListener("click", handleLikeIcon);
-
-  cardImage.src = cardData.link;
-  cardImage.alt = cardData.name;
-  cardTitle.textContent = cardData.name;
-
-  return cardElement;
+function handleLikeIcon() {
+  likeButton.classList.toggle("card__like-button_active");
 }
+
+likeButton.addEventListener("click", handleLikeIcon);
+
+cardImage.src = cardData.link;
+cardImage.alt = cardData.name;
+cardTitle.textContent = cardData.name;
 
 function handleCardImageClick(name, link) {
   modalPreviewImg.src = link;
@@ -186,7 +186,7 @@ previewImageModalCloseButton.addEventListener("click", () =>
   closeModal(previewImageModal)
 );
 profileFormElement.addEventListener("submit", handleProfileFormSubmit);
-addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
+cardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 profileEditButton.addEventListener("click", () => {
   nameInput.value = profileTitle.textContent;

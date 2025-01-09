@@ -25,7 +25,7 @@ export default class FormValidator {
     }
   }
 
-  _toggleSubmitButton() {
+  toggleSubmitButton() {
     const hasInvalidInput = this._inputList.some(
       (input) => !input.validity.valid
     );
@@ -48,7 +48,7 @@ export default class FormValidator {
     this._inputList.forEach((input) => {
       input.addEventListener("input", () => {
         this._checkInputValidity(input);
-        this._toggleSubmitButton();
+        this.toggleSubmitButton();
       });
     });
   }
@@ -69,6 +69,6 @@ export default class FormValidator {
       errorElement.textContent = "";
       errorElement.classList.remove(this._settings.errorClass);
     });
-    this._toggleSubmitButton();
+    this.toggleSubmitButton();
   }
 }

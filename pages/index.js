@@ -29,11 +29,6 @@ const initialCards = [
 ];
 // Card.js and Validator.js
 
-const cardData = {
-  name: "Yoesmite Valley",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-};
-
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template", handleCardImageClick);
   return card.getView();
@@ -115,45 +110,17 @@ function handleAddCardFormSubmit(evt) {
   renderCard({ name, link }, cardsWrap);
   closeModal(addCardModal);
   cardFormElement.reset();
+  cardFormValidator.toggleSubmitButton();
 }
-
-const cardElement = cardTemplate.cloneNode(true);
-const cardImage = cardElement.querySelector(".card__image");
-const cardTitle = cardElement.querySelector(".card__title");
-const likeButton = cardElement.querySelector(".card__like-button");
-const deleteButton = cardElement.querySelector(".card__delete-button");
-
-// find the delete button
-
-//add the event listener to the delete button
-// cardElement.remove();
-
-// deleteButton.addEventListener("click", handleDeleteCard);
-// cardElement.remove();
-
-// add click listener to the cardImage element
-// openModal with previewImageModal
-cardImage.addEventListener("click", (e) => {
-  modalPreviewImg.src = cardData.link;
-  modalPreviewImg.alt = cardData.name;
-  modalPreviewTitle.textContent = cardData.name;
-  openModal(previewImageModal);
-});
-
-function handleLikeIcon() {
-  likeButton.classList.toggle("card__like-button_active");
-}
-
-likeButton.addEventListener("click", handleLikeIcon);
-
-cardImage.src = cardData.link;
-cardImage.alt = cardData.name;
-cardTitle.textContent = cardData.name;
 
 function handleCardImageClick(name, link) {
+  // set the correct image
   modalPreviewImg.src = link;
-  modalPreviewImg.alt = name;
+  // set the correct caption
   modalPreviewTitle.textContent = name;
+  // set the alt for the image
+  modalPreviewImg.alt = name;
+  // open preview image modal
   openModal(previewImageModal);
 }
 

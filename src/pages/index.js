@@ -1,5 +1,5 @@
 import Card from "../components/Card.js";
-import FormValidator from "../components/formValidator.js";
+import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
@@ -128,7 +128,7 @@ function renderCard(cardData) {
 function handleProfileFormSubmit(inputValues) {
   // utilize the inputValues object
   // and call the setUserInfo method (in the UserInfo class) to set the name and description that was typed in by the user
-  userInfo.setUserInfo(inputValues.name, inputValues.job);
+  userInfo.setUserInfo(inputValues.name, inputValues.description);
   closeModal(editProfileModal);
 }
 
@@ -145,6 +145,10 @@ const popupWithImage = new PopupWithImage("#preview-image-modal");
 
 function handleCardImageClick({ name, link }) {
   popupWithImage.open({ name, link });
+}
+
+function openEditModal() {
+  validation.resetValidation();
 }
 
 // Escape and Overlay
@@ -175,8 +179,8 @@ function closeModalOverlay(evt) {
 previewImageModalCloseButton.addEventListener("click", () =>
   closeModal(previewImageModal)
 );
-profileFormElement.addEventListener("submit", handleProfileFormSubmit);
-cardFormElement.addEventListener("submit", handleAddCardFormSubmit);
+// profileFormElement.addEventListener("submit", handleProfileFormSubmit);
+// cardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 profileEditButton.addEventListener("click", () => {
   // call the getUserInfo method

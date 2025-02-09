@@ -11,12 +11,6 @@ export default class PopupWithForm extends Popup {
     this._inputData = {};
   }
 
-  close() {
-    this._popupForm.reset();
-    // super refers to parents' class
-    super.close();
-  }
-
   setEventListeners() {
     // sets event listeners
     super.setEventListeners();

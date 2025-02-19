@@ -10,14 +10,18 @@ export default class FormValidator {
     );
   }
 
+  _hideInputError(inputElement, errorElement) {
+    errorElement.textContent = "";
+    errorElement.classList.remove(this._settings.errorClass);
+    inputElement.classList.remove(this._settings.inputErrorClass);
+  }
+
   _checkInputValidity(inputElement) {
     const errorElement = this._formElement.querySelector(
       `#${inputElement.id}-error`
     );
     if (inputElement.validity.valid) {
-      errorElement.textContent = "";
-      errorElement.classList.remove(this._settings.errorClass);
-      inputElement.classList.remove(this._settings.inputErrorClass);
+      this._hideInputError(inputElement, errorElement);
     } else {
       errorElement.textContent = inputElement.validationMessage;
       errorElement.classList.add(this._settings.errorClass);
@@ -65,10 +69,10 @@ export default class FormValidator {
       const errorElement = this._formElement.querySelector(
         `#${input.id}-error`
       );
-      input.classList.remove(this._settings.inputErrorClass);
-      errorElement.textContent = "";
-      errorElement.classList.remove(this._settings.errorClass);
+      this._hideInputError(input, errorElement);
     });
     this.toggleSubmitButton();
   }
 }
+
+// this._inputList = [name input element, description input element]

@@ -73,7 +73,10 @@ const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
 // Creating instance for PopupWithForm.js
-const newCardPopup = new PopupWithForm("#add-card-modal", (inputValues) => {});
+const newCardPopup = new PopupWithForm(
+  "#add-card-modal",
+  handleAddCardFormSubmit
+);
 newCardPopup.setEventListeners();
 
 const editProfilePopup = new PopupWithForm(
@@ -133,8 +136,8 @@ function handleProfileFormSubmit(inputValues) {
 }
 
 function handleAddCardFormSubmit(inputValues) {
-  const name = cardTitleInput.value;
-  const link = cardUrlInput.value;
+  const name = inputValues.title;
+  const link = inputValues.url;
   renderCard({ name, link });
   closeModal(addCardModal);
   cardFormElement.reset();
@@ -142,6 +145,7 @@ function handleAddCardFormSubmit(inputValues) {
 }
 
 const popupWithImage = new PopupWithImage("#preview-image-modal");
+popupWithImage.setEventListeners();
 
 function handleCardImageClick({ name, link }) {
   popupWithImage.open({ name, link });
@@ -176,9 +180,7 @@ function closeModalOverlay(evt) {
 }
 
 // Form Listeners
-previewImageModalCloseButton.addEventListener("click", () =>
-  closeModal(previewImageModal)
-);
+
 // profileFormElement.addEventListener("submit", handleProfileFormSubmit);
 // cardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
@@ -187,15 +189,11 @@ profileEditButton.addEventListener("click", () => {
   const { name, job } = userInfo.getUserInfo();
   nameInput.value = name;
   jobInput.value = job;
-
+  profileFormValidator.resetValidation();
   editProfilePopup.open();
 });
-profileModalCloseButton.addEventListener("click", () =>
-  closeModal(editProfileModal)
-);
+
 // add new card
 addNewCardButton.addEventListener("click", () => newCardPopup.open());
-addCardModalCloseButton.addEventListener("click", () =>
-  closeModal(addCardModal)
-);
+
 //initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));

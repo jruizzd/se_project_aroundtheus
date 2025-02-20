@@ -132,14 +132,12 @@ function handleProfileFormSubmit(inputValues) {
   // utilize the inputValues object
   // and call the setUserInfo method (in the UserInfo class) to set the name and description that was typed in by the user
   userInfo.setUserInfo(inputValues.name, inputValues.description);
-  closeModal(editProfileModal);
 }
 
 function handleAddCardFormSubmit(inputValues) {
   const name = inputValues.title;
   const link = inputValues.url;
   renderCard({ name, link });
-  closeModal(addCardModal);
   cardFormElement.reset();
   cardFormValidator.toggleSubmitButton();
 }
@@ -153,30 +151,6 @@ function handleCardImageClick({ name, link }) {
 
 function openEditModal() {
   validation.resetValidation();
-}
-
-// Escape and Overlay
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", closeModalEsc);
-  modal.addEventListener("mousedown", closeModalOverlay);
-}
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", closeModalEsc);
-  modal.removeEventListener("mousedown", closeModalOverlay);
-}
-
-function closeModalEsc(evt) {
-  if (evt.key === "Escape") {
-    const modalOpened = document.querySelector(".modal_opened");
-    closeModal(modalOpened);
-  }
-}
-function closeModalOverlay(evt) {
-  if (evt.target === evt.currentTarget) {
-    closeModal(evt.currentTarget);
-  }
 }
 
 // Form Listeners

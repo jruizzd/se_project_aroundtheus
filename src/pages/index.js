@@ -115,11 +115,6 @@ function handleCardImageClick({ name, link }) {
   popupWithImage.open({ name, link });
 }
 
-// Form Listeners
-
-// profileFormElement.addEventListener("submit", handleProfileFormSubmit);
-// cardFormElement.addEventListener("submit", handleAddCardFormSubmit);
-
 profileEditButton.addEventListener("click", () => {
   // call the getUserInfo method
   const { name, job } = userInfo.getUserInfo();

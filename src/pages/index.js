@@ -4,48 +4,15 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
+import { initialCards, formSettings } from "../utils/constants.js";
 import "../pages/index.css";
 
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-];
 // Card.js and Validator.js
 
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template", handleCardImageClick);
   return card.getView();
 }
-
-const formSettings = {
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  errorClass: "modal__error",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-};
 
 // Select the form elements
 const cardFormElement = document.querySelector("#add-card-form");
@@ -60,6 +27,7 @@ const profileFormValidator = new FormValidator(
 // enable form validation for both forms
 cardFormValidator.enableValidation();
 profileFormValidator.enableValidation();
+
 // cardInstance.init();
 // Handle profile modal opening and form resetting
 
@@ -91,8 +59,6 @@ const userInfo = new UserInfo({
   jobSelector: ".profile__description",
 });
 // const userInfoData = userInfo.getUserInfo();
-
-// userInfo.setUserInfo("John", "Sailor");
 // newCardPopup.close();
 // Wrappers
 const cardsWrap = document.querySelector(".cards__list");
@@ -149,10 +115,6 @@ function handleCardImageClick({ name, link }) {
   popupWithImage.open({ name, link });
 }
 
-function openEditModal() {
-  validation.resetValidation();
-}
-
 // Form Listeners
 
 // profileFormElement.addEventListener("submit", handleProfileFormSubmit);
@@ -169,5 +131,3 @@ profileEditButton.addEventListener("click", () => {
 
 // add new card
 addNewCardButton.addEventListener("click", () => newCardPopup.open());
-
-//initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));

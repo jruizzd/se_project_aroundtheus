@@ -27,6 +27,7 @@ const profileFormValidator = new FormValidator(
 // enable form validation for both forms
 cardFormValidator.enableValidation();
 profileFormValidator.enableValidation();
+profileFormValidator.resetValidation();
 
 // cardInstance.init();
 // Handle profile modal opening and form resetting

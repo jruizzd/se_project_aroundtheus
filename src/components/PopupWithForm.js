@@ -9,6 +9,15 @@ export default class PopupWithForm extends Popup {
     this._popupForm = this._popupElement.querySelector(".modal__form");
     this._handleFormSubmit = handleFormSubmit;
     this._inputData = {};
+    this._submitButton = this._popupForm.querySelector(".modal__button");
+  }
+
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._submitButton.textContent = this._submitButton.dataset.loadingText;
+    } else {
+      this._submitButton.textContent = this._submitButton.dataset.text;
+    }
   }
 
   setEventListeners() {
@@ -17,17 +26,24 @@ export default class PopupWithForm extends Popup {
 
     this._popupForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._handleFormSubmit(this._getInputValues());
-      this.close();
+      this.renderLoading(true);
+      Promise.resolve(this._handleFormSubmit(this._getInputValues()))
+        .then(() => {
+          this.close();
+        })
+        .finally(() => {
+          this.renderLoading(false);
+        });
     });
   }
 
   // collects data from all the input fields and returns it as an object. This data should then be passed to the submission handler as an argument.
   _getInputValues() {
-    const inputValues = this._popupForm.querySelectorAll(".modal__input");
-    inputValues.forEach((input) => {
-      this._inputData[input.name] = input.value;
+    const inputData = {}; // Create a new object each time
+    const inputElements = this._popupForm.querySelectorAll(".modal__input");
+    inputElements.forEach((input) => {
+      inputData[input.name] = input.value;
     });
-    return this._inputData;
+    return inputData;
   }
 }

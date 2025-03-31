@@ -1,9 +1,10 @@
 export default class UserInfo {
   // two elements in constructor one for profile's name element and one for its job element
-  constructor({ nameSelector, jobSelector }) {
+  constructor({ nameSelector, jobSelector, avatarSelector }) {
     // store selectors in instance variables
     this._nameElement = document.querySelector(nameSelector);
     this._jobElement = document.querySelector(jobSelector);
+    this._avatarElement = document.querySelector(avatarSelector);
   }
   // which returns an object containing information about the user. This method will be handy for cases when it's necessary to display the user data in the open form
   // getUserInfo method stick information in the inputs
@@ -20,6 +21,8 @@ export default class UserInfo {
     this._nameElement.textContent = name;
     this._jobElement.textContent = job;
   }
-}
 
-//userInfo.setUserInfo("John Smith", "sailor");
+  setUserAvatar(avatarUrl) {
+    this._avatarElement.src = avatarUrl;
+  }
+}

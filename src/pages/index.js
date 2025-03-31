@@ -6,12 +6,42 @@ import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import { formSettings } from "../utils/constants.js";
 import Api from "../components/Api.js";
+import DeleteCardPopup from "../components/DeleteCardPopup.js";
 import "../pages/index.css";
 
-// Card.js and Validator.js
+let userId;
+
+const handleLikeClick = (cardId, isLiked) => {
+  const apiCall = isLiked ? api.removeLike(cardId) : api.addLike(cardId);
+
+  return apiCall
+    .then((updatedCard) => {
+      console.log("Updated card data from API:", updatedCard);
+      return updatedCard;
+    })
+    .catch((err) => {
+      console.error("Error updating like:", err);
+    });
+};
 
 function createCard(cardData) {
-  const card = new Card(cardData, "#card-template", handleCardImageClick);
+  const card = new Card(
+    {
+      name: cardData.name,
+      link: cardData.link,
+      _id: cardData._id,
+      likes: cardData.likes,
+      userId: userId,
+      ownerId: cardData.owner._id,
+    },
+    "#card-template",
+    handleCardImageClick,
+    (cardElement) => {
+      deleteCardPopup.setCardToDelete(cardElement);
+      deleteCardPopup.open();
+    },
+    handleLikeClick
+  );
   return card.getView();
 }
 
@@ -28,9 +58,9 @@ const profileFormValidator = new FormValidator(
 // enable form validation for both forms
 cardFormValidator.enableValidation();
 profileFormValidator.enableValidation();
-
-// cardInstance.init();
-// Handle profile modal opening and form resetting
+const editAvatarForm = document.querySelector("#edit-avatar-form");
+const editAvatarValidator = new FormValidator(formSettings, editAvatarForm);
+editAvatarValidator.enableValidation();
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -42,11 +72,10 @@ const api = new Api({
 
 let cardSection;
 
-// getting the cards on the server
-api
-  .getInitialCards()
-  .then((cards) => {
-    // we want to display the cards from the server on our page
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    userId = userData._id; // Store the user ID
+    userInfo.setUserInfo(userData.name, userData.about);
     cardSection = new Section(
       {
         items: cards.reverse(),
@@ -56,19 +85,7 @@ api
     );
     cardSection.renderItems();
   })
-  .catch((err) => {
-    console.error(err); // log the error to the console
-  });
-
-// call the getUserInfo method, to get the current user's name, description, etc...
-// and then, display their name and description on the page
-api
-  .getUserInfo()
-  .then((userData) => {
-    userInfo.setUserInfo(userData.name, userData.about);
-  })
-  .catch((err) => console.error(err));
-
+  .catch((err) => console.log(`Error: ${err}`));
 // Template
 const cardTemplate = document
   .querySelector("#card-template")
@@ -86,10 +103,17 @@ const editProfilePopup = new PopupWithForm(
 );
 editProfilePopup.setEventListeners();
 
+const editAvatarPopup = new PopupWithForm(
+  "#edit-avatar-modal",
+  handleAvatarFormSubmit
+);
+editAvatarPopup.setEventListeners();
+
 // Creating instance for UserInfo.js
 const userInfo = new UserInfo({
   nameSelector: ".profile__title",
   jobSelector: ".profile__description",
+  avatarSelector: ".profile__image",
 });
 
 // const userInfoData = userInfo.getUserInfo();
@@ -100,6 +124,7 @@ const editProfileModal = document.querySelector("#edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
 
 //Buttons and other DOM nodes
+const avatarEditButton = document.querySelector(".profile__image-edit");
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileModalCloseButton = editProfileModal.querySelector(".modal__close");
 const addCardModalCloseButton = addCardModal.querySelector(".modal__close");
@@ -131,7 +156,7 @@ function renderCard(cardData) {
 function handleProfileFormSubmit(inputValues) {
   // utilize the inputValues object
   // and call the setUserInfo method (in the UserInfo class) to set the name and description that was typed in by the user
-  api
+  return api
     .editProfile({ name: inputValues.name, about: inputValues.description })
     .then((res) => {
       userInfo.setUserInfo(res.name, res.about);
@@ -159,12 +184,37 @@ function handleAddCardFormSubmit(inputValues) {
     .catch((err) => console.error(err));
 }
 
+function handleAvatarFormSubmit(inputValues) {
+  return api
+    .editAvatar(inputValues.avatar)
+    .then((userData) => {
+      userInfo.setUserAvatar(userData.avatar);
+    })
+    .catch(console.error);
+}
+
 const popupWithImage = new PopupWithImage("#preview-image-modal");
 popupWithImage.setEventListeners();
 
 function handleCardImageClick({ name, link }) {
   popupWithImage.open({ name, link });
 }
+// An instance for DeleteCardPopup
+const deleteCardPopup = new DeleteCardPopup({
+  popupSelector: "#delete-card-modal",
+  handleFormSubmit: (cardElement) => {
+    const cardId = cardElement.dataset.cardId;
+    api
+      .deleteCard(cardId)
+      .then(() => {
+        cardElement.remove();
+        deleteCardPopup.close();
+      })
+      .catch((err) => console.log(err));
+  },
+});
+// Add event listeners for the delete popup
+deleteCardPopup.setEventListeners();
 
 profileEditButton.addEventListener("click", () => {
   // call the getUserInfo method
@@ -178,13 +228,7 @@ profileEditButton.addEventListener("click", () => {
 // add new card
 addNewCardButton.addEventListener("click", () => newCardPopup.open());
 
-// making a request to server
-// fetch("https://around-api.en.tripleten-services.com/v1/cards", {
-//   headers: {
-//     authorization: "106a4ee2-1a86-4403-8374-54ef205a87e1",
-//   },
-// })
-//   .then((res) => res.json())
-//   .then((result) => {
-//     console.log(result);
-//   });
+avatarEditButton.addEventListener("click", () => {
+  editAvatarValidator.resetValidation();
+  editAvatarPopup.open();
+});

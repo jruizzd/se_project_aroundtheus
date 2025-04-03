@@ -17,19 +17,22 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="Avatar"
-            class="profile__image"
-          />
+          <div class="profile__image-container">
+            <img alt="Avatar" class="profile__image" />
+            <button
+              type="button"
+              class="profile__image-edit"
+              aria-label="Edit profile picture"
+            ></button>
+          </div>
           <div class="profile__info">
-            <h1 class="profile__title">Jacques Cousteau</h1>
+            <h1 class="profile__title"></h1>
             <button
               class="profile__edit-button"
               id="profile-edit-button"
               type="button"
             ></button>
-            <p class="profile__description">Explorer</p>
+            <p class="profile__description"></p>
           </div>
           <button class="profile__add-button" type="button"></button>
         </section>
@@ -57,7 +60,10 @@
                 minlength="2"
                 maxlength="40"
                 required />
-              <span class="modal__span" id="profile-title-input-error"></span
+              <span
+                class="modal__input-error"
+                id="profile-title-input-error"
+              ></span
             ></label>
             <label class="modal__label">
               <input
@@ -70,11 +76,18 @@
                 maxlength="200"
                 required />
               <span
-                class="modal__span"
+                class="modal__input-error"
                 id="profile-description-input-error"
               ></span
             ></label>
-            <button class="modal__button" type="submit">Save</button>
+            <button
+              class="modal__button"
+              type="submit"
+              data-text="Save"
+              data-loading-text="Saving..."
+            >
+              Save
+            </button>
           </form>
         </div>
       </div>
@@ -94,7 +107,10 @@
                 minlength="1"
                 maxlength="30"
                 required />
-              <span class="modal__span" id="place-title-input-error"></span
+              <span
+                class="modal__input-error"
+                id="place-title-input-error"
+              ></span
             ></label>
             <label class="modal__label">
               <input
@@ -104,12 +120,14 @@
                 name="url"
                 placeholder="Image URL"
                 required />
-              <span class="modal__span" id="place-type-url-error"></span
+              <span class="modal__input-error" id="place-type-url-error"></span
             ></label>
             <button
               class="modal__button modal__button_disabled"
               type="submit"
               disabled
+              data-text="Save"
+              data-loading-text="Saving..."
             >
               Save
             </button>
@@ -126,6 +144,49 @@
         <h2 class="modal__preview-title"></h2>
       </div>
     </div>
+    <!-- Add the delete confirmation modal -->
+    <div class="modal" id="delete-card-modal">
+      <div class="modal__container">
+        <button type="button" class="modal__close"></button>
+        <h3 class="modal__heading">Are you sure?</h3>
+        <form class="modal__form" id="delete-card-form">
+          <button type="submit" class="modal__button">Yes</button>
+        </form>
+      </div>
+    </div>
+    <!-- Add avator edit modal content -->
+    <div class="modal" id="edit-avatar-modal">
+      <div class="modal__container">
+        <button type="button" class="modal__close" aria-label="Close"></button>
+        <h3 class="modal__heading">Change profile picture</h3>
+        <form
+          class="modal__form"
+          id="edit-avatar-form"
+          name="avatar-edit-form"
+          novalidate
+        >
+          <label class="modal__label">
+            <input
+              type="url"
+              id="avatar-url-input"
+              name="avatar"
+              class="modal__input modal__input_type_url"
+              placeholder="Image URL"
+              required
+            />
+            <span class="modal__input-error" id="avatar-url-input-error"></span>
+          </label>
+          <button
+            type="submit"
+            class="modal__button"
+            data-text="Save"
+            data-loading-text="Saving..."
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
 
     <template id="card-template">
       <li class="card">
@@ -137,12 +198,12 @@
         />
         <div class="card__description">
           <h2 class="card__title"></h2>
-          <button class="card__like-button" type="button"></button>
+          <div class="card__like-container">
+            <button class="card__like-button" type="button"></button>
+            <span class="card__like-count">0</span>
+          </div>
         </div>
       </li>
     </template>
-
-    <!-- index.js -->
-    <!-- <script src="./scripts/validation.js"></script> -->
   </body>
 </html>

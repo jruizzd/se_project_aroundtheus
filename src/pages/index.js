@@ -7,6 +7,7 @@ import UserInfo from "../components/UserInfo.js";
 import { formSettings } from "../utils/constants.js";
 import Api from "../components/Api.js";
 import DeleteCardPopup from "../components/DeleteCardPopup.js";
+
 import "../pages/index.css";
 
 let userId;
@@ -33,6 +34,7 @@ function createCard(cardData) {
       likes: cardData.likes,
       userId: userId,
       ownerId: cardData.owner._id,
+      isLiked: cardData.isLiked,
     },
     "#card-template",
     handleCardImageClick,
@@ -76,6 +78,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cards]) => {
     userId = userData._id; // Store the user ID
     userInfo.setUserInfo(userData.name, userData.about);
+    userInfo.setUserAvatar(userData.avatar);
     cardSection = new Section(
       {
         items: cards.reverse(),
@@ -171,7 +174,7 @@ function handleAddCardFormSubmit(inputValues) {
     console.error("Please enter a valid URL starting with http:// or https://");
     return;
   }
-  api
+  return api
     .addCard({
       name: name,
       link: link,

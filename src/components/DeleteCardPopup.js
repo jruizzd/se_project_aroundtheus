@@ -5,8 +5,7 @@ class DeleteCardPopup extends Popup {
   constructor({ popupSelector, handleFormSubmit }) {
     super({ popupSelector });
     this._handleFormSubmit = handleFormSubmit;
-    this._popup = document.querySelector(popupSelector);
-    this._form = this._popup.querySelector(".modal__form");
+    this._form = this._popupElement.querySelector(".modal__form");
     this._cardToDelete = null;
   }
 
